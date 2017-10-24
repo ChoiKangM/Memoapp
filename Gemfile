@@ -18,6 +18,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'tinymce-rails'
 
 
+
 # devise
 gem 'devise'
 gem 'devise-bootstrap-views'
@@ -47,6 +48,10 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rails_db'
+  
+  # 진화한 콘솔
+  gem 'pry'
+  gem 'pry-rails'
 end
 
 group :development do
