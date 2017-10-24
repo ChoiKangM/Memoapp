@@ -3,10 +3,10 @@
     <%= link_to "Memo app", root_path, id: 'logo' %>
     <nav>
      <ul class="nav navbar-nav navbar-right">
-       <%# TODO: Navigation 완성하기%>
+       <%# TODO: Navigation 완성하기 [DONE]%>
        <li><%= link_to 'Home', root_path %></li>
-       <li><%= link_to 'New Memo', '#' %></li>
-       <%# FIXME: New Memo로 보내기 %>
+       <li><%= link_to 'New Memo', new_memo_path %></li>
+       <%# FIXME: New Memo로 보내기 [DONE]%>
        <% if user_signed_in? %>
          <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
        <% else %>

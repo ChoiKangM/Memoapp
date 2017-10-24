@@ -1,4 +1,22 @@
 Rails.application.routes.draw do
+  # get '/memos/new', to: "memos#new", as: "new_memo" 
+  # post '/memos', to: "memos#create"
+  
+  # get '/memos/:id', to: "memos#show"
+  # get '/memos', to: "memos#index"
+
+  # get '/memos/:id/edit', to: "memos#edit", as: "edit_memo"
+  # patch '/memos/:id', to: "memos#update"
+  
+  # delete '/memos/:id', to: "memos#destroy"
+  
+  
+  # Restful
+  # Create = Post
+  # Retrieves = Get
+  # Update = Patch
+  # Destroy = Delete
+  resources :memos
   devise_for :users
   root 'home#index'
 
