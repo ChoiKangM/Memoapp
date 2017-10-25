@@ -1,2 +1,22 @@
-<h1>Memos#index</h1>
-<p>Find me in app/views/memos/index.html.erb</p>
+<h1>Hack Your Memo</h1>
+<div class="table-responsible">
+  <table class="table table-fit">
+    <thead>
+      <tr>
+        <th>title</th>
+        <th>user</th>
+        <th>comments</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @memos.each do |memo| %>
+        <tr>
+          <td><%= link_to memo.title, memo %></td>
+          <td><%= memo.user.email %></td>
+          <td><%# TODO: comment count %>100</td>
+        </tr>
+       <% end %>
+    </tbody>
+  </table>
+  <%= paginate @memos %>
+</div>

@@ -231,6 +231,7 @@ DEPENDENCIES
   devise-bootstrap-views
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari
   local_time
   pg (= 0.18.1)
   pry
