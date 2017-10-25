@@ -1,6 +1,7 @@
 class MemosController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   before_action :find_memo, only: [:show, :edit, :update, :destroy]
+  before_action :is_owner?, only: [:edit, :update, :destroy]
   # TODO: User login 과 결합하기
 # Create  
   def new
@@ -30,6 +31,7 @@ class MemosController < ApplicationController
 # Update
   def edit
     #@memo = Memo.find(params[:id])
+    is_owner?
   end
   
   def update
@@ -50,5 +52,8 @@ class MemosController < ApplicationController
     
     def memo_params
       params.require(:memo).permit(:title, :content, :user_id)
+    end
+    def is_owner?
+      redirect_to root_path unless current_user == @memo.user
     end
 end

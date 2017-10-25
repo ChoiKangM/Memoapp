@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_comment, only: [:destroy]
+  before_action :is_owner?, only: [:destroy]
   # TODO: User Login과 결합하기
   def create
     @comment = Comment.new(comment_params)
@@ -19,5 +21,8 @@ class CommentsController < ApplicationController
     end
     def comment_params
       params.require(:comment).permit(:content, :user_id, :memo_id)
+    end
+    def is_owner?
+      redirect_to root_path unless current_user == @memo.user
     end
 end

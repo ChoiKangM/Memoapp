@@ -2,18 +2,21 @@
 <hr />
 <h2>by <%= @memo.user.email %></h2>
 <h3>
-    <%# FIXME: icon helper DONE %>
+    <%# FIXME: icon helper [DONE] %>
     <%= icon 'time' %>
     <%= local_time(@memo.created_at) %>
 </h3>
 <%# TODO: 로그인한 사람이 글 작성자면 수정, 삭제 활성화 %>
-<%= icon 'pencil' %><%= link_to '수정하기', edit_memo_path %> | 
-<%= icon 'trash' %><%= link_to '삭제하기', memo_path, method: :delete %>
+<% if current_user == @memo.user %>
+  <%= icon 'pencil' %><%= link_to '수정하기', edit_memo_path %> | 
+  <%= icon 'trash' %><%= link_to '삭제하기', memo_path, method: :delete %>
+<% end %>
 <hr />
 <%= @memo.content.html_safe %>
 <hr />
 
 <div class="well">
+  <% if user_signed_in? %>
     <%= bootstrap_form_for @comment, url: memo_comments_path(@memo) do |f| %>
         <%= f.hidden_field :user_id, value: current_user.id %>
         <%= f.hidden_field :memo_id, value: @memo.id %>
@@ -21,6 +24,9 @@
         <%= f.submit %>
     <% end %>
     <%# TODO: 댓글 작성 완성하기 %>
+  <% else %>
+    <%= link_to '댓글을 남기려면 로그인 하세요!', new_user_session_path %>
+  <% end %>
 </div>
 <hr />
 <div>
@@ -31,7 +37,9 @@
           <strong><%= comment.user.email %></strong>
           <%= icon 'time' %>
           <small><%= local_time(comment.created_at) %></small>
-          <%= link_to icon('trash'), memo_comment_path(@memo,comment), method: :delete %>
+          <% if current_user == comment.user %>
+            <%= link_to icon('trash'), memo_comment_path(@memo,comment), method: :delete %>
+          <% end %>
         </h4>
         <%= comment.content %>
       </div>
