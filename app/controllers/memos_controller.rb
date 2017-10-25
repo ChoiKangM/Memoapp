@@ -17,6 +17,7 @@ class MemosController < ApplicationController
   end
 # Read
   def show
+    @memo = Memo.find(params[:id])
   end
 
   def index

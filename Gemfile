@@ -17,7 +17,8 @@ gem 'coffee-rails', '~> 4.1.0'
 # Editor
 gem 'tinymce-rails'
 
-
+# Local Time
+gem 'local_time'
 
 # devise
 gem 'devise'

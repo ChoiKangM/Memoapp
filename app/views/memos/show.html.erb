@@ -1,2 +1,20 @@
-<h1>Memos#show</h1>
-<p>Find me in app/views/memos/show.html.erb</p>
+<h1><%= @memo.title %></h1>
+<hr />
+<h2>by <%= @memo.user.email %></h2>
+<h3>
+    <%# FIXME: icon helper %>
+    <span class="glyphicon glyphicon-time"></span>
+    <%= local_time(@memo.created_at) %>
+</h3>
+<hr />
+<%= @memo.content.html_safe %>
+<hr />
+
+<div class="well">
+    댓글 작성 창
+    <%# TODO: 댓글 작성 완성하기 %>
+</div>
+<hr />
+<div>
+    <%# TODO: 댓글 보여주기 완성하기 %>
+</div>
