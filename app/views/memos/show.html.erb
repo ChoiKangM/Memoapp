@@ -14,10 +14,29 @@
 <hr />
 
 <div class="well">
-    댓글 작성 창
+    <%= bootstrap_form_for @comment, url: memo_comments_path(@memo) do |f| %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.hidden_field :memo_id, value: @memo.id %>
+        <%= f.text_field :content, label: 'Leave a comment!' %>
+        <%= f.submit %>
+    <% end %>
     <%# TODO: 댓글 작성 완성하기 %>
 </div>
 <hr />
 <div>
-    <%# TODO: 댓글 보여주기 완성하기 %>
+  <% @comments.each do |comment| %>
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading">
+          <strong><%= comment.user.email %></strong>
+          <%= icon 'time' %>
+          <small><%= local_time(comment.created_at) %></small>
+          <%= link_to icon('trash'), memo_comment_path(@memo,comment), method: :delete %>
+        </h4>
+        <%= comment.content %>
+      </div>
+    </div>
+    <hr />
+  <% end %>
+  <%# TODO: 댓글 보여주기 완성하기 %>
 </div>

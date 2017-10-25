@@ -1,6 +1,7 @@
 class MemosController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   before_action :find_memo, only: [:show, :edit, :update, :destroy]
+  # TODO: User login 과 결합하기
 # Create  
   def new
     @memo = Memo.new
@@ -17,6 +18,8 @@ class MemosController < ApplicationController
 # Read
   def show
     #@memo = Memo.find(params[:id])
+    @comment = Comment.new
+    @comments = @memo.comments
   end
 
   def index
