@@ -6,7 +6,7 @@
     <%= icon 'time' %>
     <%= local_time(@memo.created_at) %>
 </h3>
-<%# TODO: 로그인한 사람이 글 작성자면 수정, 삭제 활성화 %>
+<%# TODO: 로그인한 사람이 글 작성자면 수정, 삭제 활성화 [DONE]%>
 <% if current_user == @memo.user %>
   <%= icon 'pencil' %><%= link_to '수정하기', edit_memo_path %> | 
   <%= icon 'trash' %><%= link_to '삭제하기', memo_path, method: :delete %>
@@ -23,7 +23,7 @@
         <%= f.text_field :content, label: 'Leave a comment!' %>
         <%= f.submit %>
     <% end %>
-    <%# TODO: 댓글 작성 완성하기 %>
+    <%# TODO: 댓글 작성 완성하기 [DONE]%>
   <% else %>
     <%= link_to '댓글을 남기려면 로그인 하세요!', new_user_session_path %>
   <% end %>
@@ -46,5 +46,5 @@
     </div>
     <hr />
   <% end %>
-  <%# TODO: 댓글 보여주기 완성하기 %>
+  <%# TODO: 댓글 보여주기 완성하기 [DONE]%>
 </div>

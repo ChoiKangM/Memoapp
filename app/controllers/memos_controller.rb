@@ -2,8 +2,7 @@ class MemosController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   before_action :find_memo, only: [:show, :edit, :update, :destroy]
   before_action :is_owner?, only: [:edit, :update, :destroy]
-  # TODO: User login 과 결합하기
-# Create  
+  # TODO: User login 과 결합하기 [DONE]
   def new
     @memo = Memo.new
   end
@@ -11,7 +10,10 @@ class MemosController < ApplicationController
   def create
     @memo = Memo.new(memo_params)
     #debugger
-    @memo.save
+    if @memo.save
+    else
+      render :new
+    end
     
     # redirect_to memo_path(@memo)
     redirect_to @memo
@@ -36,8 +38,12 @@ class MemosController < ApplicationController
   
   def update
     #@memo = Memo.find(params[:id])
-    @memo.update(memo_params)
-    redirect_to @memo
+    if @memo.update(memo_params)
+      redirect_to @memo
+    else
+      render :edit, @memo
+    end
+    
   end
 # Destroy
   def destroy

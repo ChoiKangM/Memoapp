@@ -1,5 +1,5 @@
 <%= bootstrap_form_for @memo do |f| %>
-    <%# FIXME: 현재 유저의 user_id 가져오기 %>
+    <%# FIXME: 현재 유저의 user_id 가져오기 [DONE] %>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.text_field :title, label: "제목" %>
     <%= f.text_area :content, class: "tinymce", rows: 15, cols: 120 %>
