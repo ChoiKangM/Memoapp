@@ -10,10 +10,7 @@
   <%= render 'layouts/header' %>
   
   <div class="container">
-    <% flash.each do |msg_type,msg| %> 
-      <% type = bootstrap_msg(msg_type) %>
-      <%= content_tag(:div,msg,class: ['alert',"alert-#{type}"]) %>
-    <% end %>
+    <%= render 'layouts/flash_message' %>
     <%= yield %>
   </div>
   <%= console if Rails.env.development? %>
